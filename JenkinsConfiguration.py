@@ -1,3 +1,3 @@
-jenkinsurl="http://jenkins.caplin.com/"
+jenkinsurl="http://abcdef.com/"
 username="test"
 password="abc"
