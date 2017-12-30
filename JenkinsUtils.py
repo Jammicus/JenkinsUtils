@@ -28,8 +28,8 @@ def printAllJobs():
 
 def printInstalledPlugins():
     jenkins = Jenkins(JenkinsConfiguration.jenkinsurl,JenkinsConfiguration.username,JenkinsConfiguration.password)
-    plugin_names = jenkins.get_plugins()
-    for item in plugin_names.keys():
+    plugin_names = sorted(jenkins.get_plugins().keys(), key=lambda x:x.lower())
+    for item in plugin_names:
         print (item)
 
 p = argparse.ArgumentParser()
