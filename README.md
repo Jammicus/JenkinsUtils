@@ -12,5 +12,5 @@ Some utility methods for getting information from Jenkins using the Jenkins Pyth
 
 * `nodeNames`:  This prints a list of all the nodes on the Jenkins Server
 * `offlineNodes`: This prints a list of all the offline nodes on the Jenkins Server
-* `printAllJobs`: This prints a list of all jobs on the Jenkins Server (NOTE: This can take a very, very, very long time)
-
+* `allJobs`: This prints a list of all jobs on the Jenkins Server (NOTE: This can take a very, very, very long time)
+* `plugins`: Prints all plugins installed in Jenkins (Note: Requires administrator credentials)
