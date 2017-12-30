@@ -1,4 +1,4 @@
-# JenkinsDetails
+# Jenkins Utilities
 Some utility methods for getting information from Jenkins using the Jenkins Python API
 
 ## Setup
