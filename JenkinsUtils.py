@@ -39,9 +39,37 @@ def printAllJobs():
 
 def printInstalledPlugins():
     jenkins = connectToServer()
-    plugin_names = sorted(jenkins.get_plugins().keys(), key=lambda x: x.lower())
-    for item in plugin_names:
-        print(item)
+    plugins = jenkins.get_plugins().values()
+    plugins.sort(key=lambda x: x.shortName.lower())
+    for item in plugins:
+            print(item.shortName)
+
+
+
+def printEnabledPlugins():
+    jenkins = connectToServer()
+    plugins = jenkins.get_plugins().values()
+    plugins.sort(key=lambda x: x.shortName.lower())
+    for item in plugins:
+        if item.enabled == True:
+            print(item)
+
+
+def printDisabledPlugins():
+    jenkins = connectToServer()
+    plugins = jenkins.get_plugins().values()
+    plugins.sort(key=lambda x: x.shortName.lower())
+    for item in plugins:
+        if item.enabled == False:
+            print(item)
+
+
+def printInstalledPluginsVersions():
+    jenkins = connectToServer()
+    plugins = jenkins.get_plugins().values()
+    plugins.sort(key=lambda x: x.shortName.lower())
+    for item in plugins:
+            print(item.shortName + " " + item.version)
 
 
 p = argparse.ArgumentParser()
@@ -58,6 +86,15 @@ option3_parser.set_defaults(func=printAllJobs)
 
 option4_parser = subparsers.add_parser('plugins')
 option4_parser.set_defaults(func=printInstalledPlugins)
+
+option5_parser = subparsers.add_parser('enabledPlugins')
+option5_parser.set_defaults(func=printEnabledPlugins)
+
+option6_parser = subparsers.add_parser('disabledPlugins')
+option6_parser.set_defaults(func=printDisabledPlugins)
+
+option7_parser = subparsers.add_parser('pluginVersions')
+option7_parser.set_defaults(func=printInstalledPluginsVersions)
 
 args = p.parse_args()
 args.func()
