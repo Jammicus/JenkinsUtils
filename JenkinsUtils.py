@@ -7,15 +7,23 @@ from jenkinsapi.jenkins import Jenkins
 
 # https://jenkinsapi.readthedocs.io/en/latest/
 
+def connectToServer():
+    try:
+        jenkins = Jenkins(JenkinsConfiguration.jenkinsurl, JenkinsConfiguration.username, JenkinsConfiguration.password)
+    except:
+        print("There was an error connecting to the Jenkins Server. Ensure the URL and credentials are correct")
+    return jenkins
+
+
 def printNodeNames():
-    jenkins = Jenkins(JenkinsConfiguration.jenkinsurl)
+    jenkins = connectToServer()
     node_names = jenkins.get_nodes()
     for name in node_names.keys():
         print(name)
 
 
 def printOfflineNodes():
-    jenkins = Jenkins(JenkinsConfiguration.jenkinsurl)
+    jenkins = connectToServer()
     node_names = jenkins.get_nodes()
     for item, value in node_names.iteritems():
         if (value.is_online() == False):
@@ -23,14 +31,14 @@ def printOfflineNodes():
 
 
 def printAllJobs():
-    jenkins = Jenkins(JenkinsConfiguration.jenkinsurl)
+    jenkins = connectToServer()
     jobs = jenkins.get_jobs()
     for key, value in jobs:
         print(key)
 
 
 def printInstalledPlugins():
-    jenkins = Jenkins(JenkinsConfiguration.jenkinsurl, JenkinsConfiguration.username, JenkinsConfiguration.password)
+    jenkins = connectToServer()
     plugin_names = sorted(jenkins.get_plugins().keys(), key=lambda x: x.lower())
     for item in plugin_names:
         print(item)
