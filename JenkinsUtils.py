@@ -42,8 +42,7 @@ def printInstalledPlugins():
     plugins = jenkins.get_plugins().values()
     plugins.sort(key=lambda x: x.shortName.lower())
     for item in plugins:
-            print(item.shortName)
-
+        print(item.shortName)
 
 
 def printEnabledPlugins():
@@ -69,7 +68,15 @@ def printInstalledPluginsVersions():
     plugins = jenkins.get_plugins().values()
     plugins.sort(key=lambda x: x.shortName.lower())
     for item in plugins:
-            print(item.shortName + " " + item.version)
+        print(item.shortName + " " + item.version)
+
+
+def printInstalledPluginsURL():
+    jenkins = connectToServer()
+    plugins = jenkins.get_plugins().values()
+    plugins.sort(key=lambda x: x.shortName.lower())
+    for item in plugins:
+        print(item.shortName + " " + item.url)
 
 
 p = argparse.ArgumentParser()
@@ -95,6 +102,9 @@ option6_parser.set_defaults(func=printDisabledPlugins)
 
 option7_parser = subparsers.add_parser('pluginVersions')
 option7_parser.set_defaults(func=printInstalledPluginsVersions)
+
+option7_parser = subparsers.add_parser('pluginUrl')
+option7_parser.set_defaults(func=printInstalledPluginsURL)
 
 args = p.parse_args()
 args.func()
