@@ -1,5 +1,9 @@
 import argparse
 import sys
+import time
+
+from jenkinsapi.custom_exceptions import JenkinsAPIException
+
 import JenkinsConfiguration
 
 from jenkinsapi.jenkins import Jenkins
@@ -12,7 +16,27 @@ def connectToServer():
         jenkins = Jenkins(JenkinsConfiguration.jenkinsurl, JenkinsConfiguration.username, JenkinsConfiguration.password)
     except:
         print("There was an error connecting to the Jenkins Server. Ensure the URL and credentials are correct")
+        exit(1)
     return jenkins
+
+
+def printAllNodeLabels():
+    jenkins = connectToServer()
+    listOfLabels = []
+    node_names = jenkins.get_nodes()
+    for node in node_names.keys():
+        try:
+            print("Getting labels for " + node)
+            results = (jenkins.get_node(node).get_labels())
+            listOfLabels.extend(results.split())
+            # Prevent the API blocking requests
+            time.sleep(5)
+        except JenkinsAPIException:
+            print(node + " does not have a config file, so its labels could not be found")
+            # Prevent the API blocking requests
+            time.sleep(5)
+            continue
+    print(set(listOfLabels))
 
 
 def printNodeNames():
@@ -79,6 +103,14 @@ def printInstalledPluginsURL():
         print(item.shortName + " " + item.url)
 
 
+def printJenkinsVersion():
+    jenkins = connectToServer()
+    serverInformation = jenkins.get_jenkins_obj()
+
+    print("Jenkins Version is " + serverInformation.version)
+
+
+
 p = argparse.ArgumentParser()
 subparsers = p.add_subparsers()
 
@@ -103,8 +135,14 @@ option6_parser.set_defaults(func=printDisabledPlugins)
 option7_parser = subparsers.add_parser('pluginVersions')
 option7_parser.set_defaults(func=printInstalledPluginsVersions)
 
-option7_parser = subparsers.add_parser('pluginUrl')
-option7_parser.set_defaults(func=printInstalledPluginsURL)
+option8_parser = subparsers.add_parser('pluginUrl')
+option8_parser.set_defaults(func=printInstalledPluginsURL)
+
+option9_parser = subparsers.add_parser('jenkinsVersion')
+option9_parser.set_defaults(func=printJenkinsVersion)
+
+option10_parser = subparsers.add_parser('possibleLabels')
+option10_parser.set_defaults(func=printAllNodeLabels)
 
 args = p.parse_args()
 args.func()

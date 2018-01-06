@@ -17,4 +17,6 @@ Some utility methods for getting information from Jenkins using the Jenkins Pyth
 * `enabledPlugins`: Prints all enabled plugins
 * `disabledPlugins`: Prints all disabled plugins
 * `pluginVersions`: Prints the plugin name along with the currently installed version
-* `pluginUrl`: Prints plugin name along with the plugin URL
+* `pluginUrl`: Prints plugin name along with the plugin URLp
+* `jenkinsVersion`: Prints current version of Jenkins
+* `possibleLabels`: Prints a list of all the possible labels you can use (NOTE: This is very, very slow. Use sparingly)
