@@ -30,11 +30,11 @@ def printAllNodeLabels():
             results = (jenkins.get_node(node).get_labels())
             listOfLabels.extend(results.split())
             # Prevent the API blocking requests
-            time.sleep(5)
+            time.sleep(3)
         except JenkinsAPIException:
             print(node + " does not have a config file, so its labels could not be found")
             # Prevent the API blocking requests
-            time.sleep(5)
+            time.sleep(3)
             continue
     print(set(listOfLabels))
 
