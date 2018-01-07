@@ -21,3 +21,4 @@ Some utility methods for getting information from Jenkins using the Jenkins Pyth
 * `jenkinsVersion`: Prints current version of Jenkins
 * `possibleLabels`: Prints a list of all the possible labels you can use (NOTE: This is very, very slow. Use sparingly)
 * `runningJobs`: Prints all jobs that are running. (NOTE: This is very, very slow. Use sparingly)
+* `queue`: Prints list of jobs waiting in the build queue.
