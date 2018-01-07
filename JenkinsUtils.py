@@ -8,7 +8,6 @@ import JenkinsConfiguration
 
 from jenkinsapi.jenkins import Jenkins
 
-
 # https://jenkinsapi.readthedocs.io/en/latest/
 
 def connectToServer():
@@ -105,7 +104,6 @@ def printInstalledPluginsURL():
 def printJenkinsVersion():
     jenkins = connectToServer()
     serverInformation = jenkins.get_jenkins_obj()
-
     print("Jenkins Version is " + serverInformation.version)
 
 
@@ -115,6 +113,12 @@ def printRunningJobs():
     for name, details in jobs:
         if (details.is_running()):
             print(name)
+
+def printJobQueue():
+    jenkins = connectToServer()
+    jobs = jenkins.get_queue()
+    for name in jobs():
+        print(name)
 
 
 p = argparse.ArgumentParser()
@@ -150,9 +154,11 @@ option9_parser.set_defaults(func=printJenkinsVersion)
 option10_parser = subparsers.add_parser('possibleLabels')
 option10_parser.set_defaults(func=printAllNodeLabels)
 
-option10_parser = subparsers.add_parser('runningJobs')
-option10_parser.set_defaults(func=printRunningJobs)
+option11_parser = subparsers.add_parser('runningJobs')
+option11_parser.set_defaults(func=printRunningJobs)
 
+option12_parser = subparsers.add_parser('queue')
+option12_parser.set_defaults(func=printRunningJobs)
 
 args = p.parse_args()
 args.func()
