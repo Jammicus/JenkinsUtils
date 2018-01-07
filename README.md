@@ -20,3 +20,4 @@ Some utility methods for getting information from Jenkins using the Jenkins Pyth
 * `pluginUrl`: Prints plugin name along with the plugin URLp
 * `jenkinsVersion`: Prints current version of Jenkins
 * `possibleLabels`: Prints a list of all the possible labels you can use (NOTE: This is very, very slow. Use sparingly)
+* `runningJobs`: Prints all jobs that are running. (NOTE: This is very, very slow. Use sparingly)

@@ -56,9 +56,8 @@ def printOfflineNodes():
 
 def printAllJobs():
     jenkins = connectToServer()
-    jobs = jenkins.get_jobs()
-    for key, value in jobs:
-        print(key)
+    jobs = jenkins.get_jobs_list()
+    print("\n".join(jobs))
 
 
 def printInstalledPlugins():
@@ -110,6 +109,13 @@ def printJenkinsVersion():
     print("Jenkins Version is " + serverInformation.version)
 
 
+def printRunningJobs():
+    jenkins = connectToServer()
+    jobs = jenkins.get_jobs()
+    for name, details in jobs:
+        if (details.is_running()):
+            print(name)
+
 
 p = argparse.ArgumentParser()
 subparsers = p.add_subparsers()
@@ -143,6 +149,10 @@ option9_parser.set_defaults(func=printJenkinsVersion)
 
 option10_parser = subparsers.add_parser('possibleLabels')
 option10_parser.set_defaults(func=printAllNodeLabels)
+
+option10_parser = subparsers.add_parser('runningJobs')
+option10_parser.set_defaults(func=printRunningJobs)
+
 
 args = p.parse_args()
 args.func()
