@@ -19,7 +19,7 @@ def connectToServer():
     return jenkins
 
 
-def printAllNodeLabels():
+def printNodeLabels():
     jenkins = connectToServer()
     listOfLabels = []
     node_names = jenkins.get_nodes()
@@ -53,7 +53,7 @@ def printOfflineNodes():
             print(item)
 
 
-def printAllJobs():
+def printJobs():
     jenkins = connectToServer()
     jobs = jenkins.get_jobs_list()
     print("\n".join(jobs))
@@ -124,44 +124,48 @@ def printJobQueue():
 p = argparse.ArgumentParser()
 subparsers = p.add_subparsers()
 
+
 option1_parser = subparsers.add_parser('nodeNames')
-option1_parser.set_defaults(func=printNodeNames)
+# option1_parser.add_argument("--labels", type=str,nargs="+",
+#                     help="increase output verbosity")
 
 option2_parser = subparsers.add_parser('offlineNodes')
-option2_parser.set_defaults(func=printOfflineNodes)
 
 option3_parser = subparsers.add_parser('allJobs')
-option3_parser.set_defaults(func=printAllJobs)
 
 option4_parser = subparsers.add_parser('plugins')
-option4_parser.set_defaults(func=printInstalledPlugins)
 
 option5_parser = subparsers.add_parser('enabledPlugins')
-option5_parser.set_defaults(func=printEnabledPlugins)
 
 option6_parser = subparsers.add_parser('disabledPlugins')
-option6_parser.set_defaults(func=printDisabledPlugins)
 
 option7_parser = subparsers.add_parser('pluginVersions')
-option7_parser.set_defaults(func=printInstalledPluginsVersions)
 
 option8_parser = subparsers.add_parser('pluginUrl')
-option8_parser.set_defaults(func=printInstalledPluginsURL)
 
 option9_parser = subparsers.add_parser('jenkinsVersion')
-option9_parser.set_defaults(func=printJenkinsVersion)
 
 option10_parser = subparsers.add_parser('possibleLabels')
-option10_parser.set_defaults(func=printAllNodeLabels)
 
 option11_parser = subparsers.add_parser('runningJobs')
-option11_parser.set_defaults(func=printRunningJobs)
 
 option12_parser = subparsers.add_parser('queue')
-option12_parser.set_defaults(func=printRunningJobs)
+
 
 args = p.parse_args()
-args.func()
+option1_parser.set_defaults(func=printNodeNames(args))
+option2_parser.set_defaults(func=printOfflineNodes)
+option3_parser.set_defaults(func=printJobs)
+option4_parser.set_defaults(func=printInstalledPlugins)
+option5_parser.set_defaults(func=printEnabledPlugins)
+option6_parser.set_defaults(func=printDisabledPlugins)
+option7_parser.set_defaults(func=printInstalledPluginsVersions)
+option8_parser.set_defaults(func=printInstalledPluginsURL)
+option9_parser.set_defaults(func=printJenkinsVersion)
+option10_parser.set_defaults(func=printNodeLabels)
+option11_parser.set_defaults(func=printRunningJobs)
+option12_parser.set_defaults(func=printRunningJobs)
+
 
 if __name__ == "__main__":
     option, params = sys.argv[0], sys.argv[1:]
