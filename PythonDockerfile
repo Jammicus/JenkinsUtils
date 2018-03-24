@@ -7,6 +7,6 @@ ADD requirements.txt /
 
 RUN pip install -r requirements.txt
 RUN python  --version
-
-ENTRYPOINT ["python", "JenkinsUtils.py" ]
+RUN echo "PythonDockerfile container is ready"
+CMD ["python3"]
 

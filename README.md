@@ -34,6 +34,9 @@ To build a Docker image with the JenkinsAPI project in, run:
 
  `docker build -f PythonDockerfile .`
 
+To run:
+ `docker run --net host <image>`
+
 ### Jenkins Testing
 
 To have a mock Jenkins instance with jobs, nodes and plugins installed, use:
