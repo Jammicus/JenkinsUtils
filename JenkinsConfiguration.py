@@ -1,3 +1,3 @@
-jenkinsurl="http://abcdef.com/"
-username="test"
-password="abc"
+jenkinsurl="http://localhost:8080"
+username=""
+password=""

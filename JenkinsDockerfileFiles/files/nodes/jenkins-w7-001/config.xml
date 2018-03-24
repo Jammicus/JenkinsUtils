@@ -1,0 +1,19 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<slave>
+  <name>windows-7-001</name>
+  <description></description>
+  <remoteFS>D:/jenkins</remoteFS>
+  <numExecutors>1</numExecutors>
+  <mode>NORMAL</mode>
+  <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+  <launcher class="hudson.slaves.JNLPLauncher">
+    <workDirSettings>
+      <disabled>true</disabled>
+      <internalDir>remoting</internalDir>
+      <failIfWorkDirIsMissing>false</failIfWorkDirIsMissing>
+    </workDirSettings>
+  </launcher>
+  <label>virtual windows windows7 64bit windows-7-001 chocolatey java java8 java7_x86 java7 git perforce p4 ie8 chrome chrome-61.0.3163.91 vc2015 .net-4.7 nsis nsis-2.46 prometheus-wmi-exporter powercli ant maven python python3 nodejs nodejs7 nodejs-7.7.4 yarn yarn-1.3 cygwin visualstudio vs2010 build firefox firefox-54.0</label>
+  <nodeProperties/>
+  <userId>build</userId>
+</slave>
