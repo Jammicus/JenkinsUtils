@@ -45,4 +45,4 @@ To have a mock Jenkins instance with jobs, nodes and plugins installed, use:
 
 To view the jenkins instance, run the container while opening port 8080.
 
-`docker run -p 8080:8080 <jenkinsDockerfileImage`
+`docker run -p 8080:8080 <jenkinsDockerfileImage>`
