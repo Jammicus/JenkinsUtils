@@ -1,12 +1,16 @@
 import argparse
+import os
 import sys
 import time
 
 from jenkinsapi.custom_exceptions import JenkinsAPIException
-
-import JenkinsConfiguration
-
 from jenkinsapi.jenkins import Jenkins
+
+scriptpath = "Credentials.py/../"
+sys.path.append(os.path.abspath(scriptpath))
+print (os.path.abspath(scriptpath))
+
+import Credentials
 
 
 # https://jenkinsapi.readthedocs.io/en/latest/
@@ -122,7 +126,7 @@ def printJobQueue():
 
 def connectToServer():
     try:
-        jenkins = Jenkins(JenkinsConfiguration.jenkinsurl, JenkinsConfiguration.username, JenkinsConfiguration.password)
+        jenkins = Jenkins(Credentials.jenkinsurl, Credentials.username, Credentials.password)
     except:
         print("There was an error connecting to the Jenkins Server. Ensure the URL and credentials are correct")
         exit(1)

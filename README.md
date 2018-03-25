@@ -5,8 +5,8 @@ Some utility methods for getting information from Jenkins using the Jenkins Pyth
 
 1. Clone Repository
 2. In the root, run `pip3 install -r requirements.txt`
-3. Update JenkinsConfiguration.py with your jenkins server URL, and your credentials
-4. Run `python3 JenkinsUtils.py <command>`
+3. Update Credentials.py with your jenkins server URL, and your credentials
+4. Run the following from the root of the project: `python3 src/JenkinsUtils.py <command>`
 
 ## Available Commands
 
@@ -35,7 +35,7 @@ To build a Docker image with the JenkinsAPI project in, run:
  `docker build -f PythonDockerfile .`
 
 To run:
- `docker run --net host <image>`
+ `docker run -i -t --net host <image>`
 
 ### Jenkins Testing
 
