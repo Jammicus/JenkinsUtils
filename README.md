@@ -41,7 +41,7 @@ To run:
 
 To have a mock Jenkins instance with jobs, nodes and plugins installed, use:
 
-`docker build -f JenkinsDockerfile .`
+`cd Jenkins; docker build -f JenkinsDockerfile .`
 
 To view the jenkins instance, run the container while opening port 8080.
 
