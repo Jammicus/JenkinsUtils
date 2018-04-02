@@ -1,12 +1,10 @@
 FROM python:3
 
-ADD Credentials.py /
-ADD src/JenkinsUtils.py /
-ADD requirements.txt /
+COPY Credentials.py JenkinsUtils/ 
+COPY /src/JenkinsUtils.py src/JenkinsUtils/
+COPY requirements.txt JenkinsUtils/
 
-
-RUN pip install -r requirements.txt
-RUN python  --version
+RUN pip install -r JenkinsUtils/requirements.txt
 RUN echo "PythonDockerfile container is ready"
 ENTRYPOINT ["/bin/bash"]
 
