@@ -8,10 +8,8 @@ from jenkinsapi.jenkins import Jenkins
 
 scriptpath = "Credentials.py/../"
 sys.path.append(os.path.abspath(scriptpath))
-print (os.path.abspath(scriptpath))
 
 import Credentials
-
 
 # https://jenkinsapi.readthedocs.io/en/latest/
 
